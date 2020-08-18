@@ -1,3 +1,3 @@
-# NY Times "The Daily" Volume Slider
+# NY Times Volume Slider
 
-The New York Times "The Daily" podcast doesn't have a volume slider.
+Add a volume slider for NY Times podcasts and audio media.
