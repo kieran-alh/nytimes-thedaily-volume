@@ -33,7 +33,7 @@ function insertSlider(container, audio)
     container.appendChild(volumeSlider);
 
     var muteBtn = container.querySelector('button[class*="volume-"]');
-    muteBtn.addEventListener("click", function() {
+    muteBtn.addEventListener('click', function() {
         var currentVolume = audio.volume * 100;
         if (audio.muted)
             currentVolume = 0;
@@ -49,7 +49,7 @@ var observer = new MutationObserver(function(mutations, observer) {
         return;
     }
 })
-observer.observe(document, {
+observer.observe(document.getElementById('app'), {
     childList: true,
     subtree: true
 })
