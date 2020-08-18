@@ -1,0 +1,20 @@
+{
+    "name": "NY Times 'The Daily' Volume Slider",
+    "version": "1.0",
+    "manifest_version": 2,
+    "description": "Volume slider for NY Times 'The Daily' podcast.",
+    "icons": {
+        "16": "./icons/volume_16.png",
+        "36": "./icons/volume_36.png",
+        "48": "./icons/volume_48.png",
+        "128": "./icons/volume_128.png"
+    },
+    "permissions": ["activeTab"],
+    "content_scripts": [
+        {
+            "matches": ["https://*.nytimes.com/*"],
+            "js": ["./content.js"]
+        }
+    ]
+}
+  

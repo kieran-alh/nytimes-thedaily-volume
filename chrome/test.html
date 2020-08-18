@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script src="./content.js"></script>
+    
+</head>
+<body>
+    <h1>Hello</h1>
+    <button onclick="playAudio()">Play/Pause</button>
+    <div class="volumeContainer-sdjfjasdf">
+
+    </div>
+    <audio preload="auto" src="http://emilcarlsson.se/assets/Avicii%20-%20The%20Nights.mp3"></audio>
+</body>
+<script>
+    function playAudio()
+    {
+        var audio = document.querySelector("audio");
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    }
+</script>
+</html>
