@@ -19,28 +19,37 @@ function createSlider()
     volumeSlider.addEventListener("input", setVolume);
     return volumeSlider;
 }
-function insertSlider()
+function insertSlider(container, audio)
 {
-    var audio = document.querySelector("audio");
-    if (audio !== null && audio !== undefined)
-        audio.volume = 0.5;
-    var container = document.querySelector('[class*="volumeContainer-"]');
-    if (container !== null && container !== undefined) {
-        var volumeSlider = createSlider();  
-        container.appendChild(volumeSlider);
-        var muteBtn = container.querySelector('button[class*="volume-"]');
-        muteBtn.addEventListener("click", function() {
-            var currentVolume = audio.volume * 100;
-            if (audio.muted)
-                currentVolume = 0;
-            volumeSlider.value = currentVolume;
-        })
-        audio.addEventListener("volumechange", function() {
-            if (audio.volume === 0 || audio.muted) 
-                audio.muted = true;
-            else
-                audio.muted = false;
-        });
-    }
+    audio.volume = 0.5;
+    audio.addEventListener("volumechange", function() {
+        if (audio.volume === 0 || audio.muted) 
+            audio.muted = true;
+        else
+            audio.muted = false;
+    });
+
+    var volumeSlider = createSlider();  
+    container.appendChild(volumeSlider);
+
+    var muteBtn = container.querySelector('button[class*="volume-"]');
+    muteBtn.addEventListener("click", function() {
+        var currentVolume = audio.volume * 100;
+        if (audio.muted)
+            currentVolume = 0;
+        volumeSlider.value = currentVolume;
+    })
 }
-window.addEventListener("load", insertSlider);
+var observer = new MutationObserver(function(mutations, observer) {
+    var container = document.querySelector('[class*="volumeContainer-"]');
+    var audio = document.querySelector('audio')
+    if (container && audio) {
+        insertSlider(container, audio);
+        observer.disconnect();
+        return;
+    }
+})
+observer.observe(document, {
+    childList: true,
+    subtree: true
+})
